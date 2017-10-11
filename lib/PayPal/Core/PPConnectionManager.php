@@ -39,6 +39,11 @@ class PPConnectionManager
             $retry = $config["http.Retry"];
             $httpConfig->setHttpRetryCount($retry);
         }
+        
+        if (isset($config["http.CURLOPT_SSLVERSION"])) {
+            $retry = $config["http.CURLOPT_SSLVERSION"];
+            $httpConfig->addCurlOption(CURLOPT_SSLVERSION, $config["http.CURLOPT_SSLVERSION"]);
+        }
 
         return new PPHttpConnection($httpConfig, $config);
     }
